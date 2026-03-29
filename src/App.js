@@ -5,7 +5,7 @@ import Textutils from './Components/Textutils';
 import React, { useState } from 'react';
 import Alert from './Components/Alert';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <>
-    <Router basename="/my-app/">
+    <BrowserRouter basename="/my-app">
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
       <Alert alert={alert}></Alert>
       <div className="container my-3">
@@ -63,7 +63,7 @@ function App() {
           <Route path='/about' element={<About mode={mode} style={style}> </About>}/>
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
     </>
   );
 }

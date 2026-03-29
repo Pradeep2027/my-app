@@ -4,6 +4,11 @@ import Navbar from './Components/Navbar';
 import Textutils from './Components/Textutils';
 import React, { useState } from 'react';
 import Alert from './Components/Alert';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 
 function App() {
 
@@ -49,12 +54,16 @@ function App() {
 
   return (
     <>
-    <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
-    <Alert alert={alert}></Alert>
-    <div className="container my-3">
-      {/* <About mode={mode} style={style}> </About> */}
-      <Textutils heading="Enter the text to analyze below:" mode={mode} showAlert={showAlert}> </Textutils>
-    </div>
+    <Router basename="/my-app">
+      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
+      <Alert alert={alert}></Alert>
+      <div className="container my-3">
+        <Routes>
+          <Route path='/' element={<Textutils heading="Enter the text to analyze below:" mode={mode} showAlert={showAlert}> </Textutils>} />
+          <Route path='/about' element={<About mode={mode} style={style}> </About>}/>
+        </Routes>
+      </div>
+    </Router>
     </>
   );
 }

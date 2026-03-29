@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './Components/Navbar';
-// import About from './Components/About';
+import About from './Components/About';
 import Textutils from './Components/Textutils';
 import React, { useState } from 'react';
 import Alert from './Components/Alert';
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <>
-    <Router basename="/my-app">
+    <Router basename="/my-app/">
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
       <Alert alert={alert}></Alert>
       <div className="container my-3">

@@ -7,22 +7,26 @@ export default function TextArea(props) {
     }
     const handleUpClick = () => {
       setText(text.toUpperCase());
+      props.showAlert("Text converted to uppercase", "info");
       // console.log(text.toUpperCase());
     }
-    const handleLowClick = () => {setText(text.toLowerCase());}
-
+    const handleLowClick = () => {
+      setText(text.toLowerCase());
+      props.showAlert("Text converted to lowercase", "info");
+    }
     const handleCopy = () => {
       navigator.clipboard.writeText(text);
+      props.showAlert("Text copied to clipboard", "info");
     }
-
     const handleExtraSpaces = () => {
       let newText = text.split(/[ ]+/);
       setText(newText.join(" "));
+      props.showAlert("Removed extra spaces", "info");
     }
-
     const titleCaseWords = () => {
       let newText = text.split(" ").map(word => word.charAt(0).toUpperCase()+word.slice(1)).join(" ");
       setText(newText);
+      props.showAlert("Text converted to titlecase", "info");
     }
 
     return (

@@ -6,15 +6,17 @@ import React, { useState } from 'react';
 
 function App() {
 
-  const [mode, setMode] = useState('dark');
+  const [mode, setMode] = useState('light');
   
   const toggleMode = () => {
     console.log("ToggleMode trigered");
     if (mode === 'light')  {
       setMode('dark');
+      document.body.style.backgroundColor = 'grey';
     }
     else  {
       setMode('light');
+      document.body.style.backgroundColor = 'white';
     }
   }
 
@@ -25,7 +27,7 @@ function App() {
     <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
     <div className="container my-3">
       {/* <About/> */}
-      <Textutils heading="Enter the text to analyze below:"> </Textutils>
+      <Textutils heading="Enter the text to analyze below:" mode={mode}> </Textutils>
     </div>
     </>
   );

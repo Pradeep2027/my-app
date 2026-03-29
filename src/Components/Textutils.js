@@ -27,10 +27,10 @@ export default function TextArea(props) {
 
     return (
       <>
-        <div className='container'>
+        <div className='container' style={{color:props.mode==='light'?'black':'white'}}>
           <h3>{props.heading}</h3>
           <div className="mb-3">
-            <textarea className="form-control" onChange={handleOnChange} value={text} id="myBox" rows="5"></textarea>
+            <textarea className="form-control border-dark" style={{backgroundColor: props.mode==='light'?'white':'grey', color:props.mode==='light'?'black':'white'}} onChange={handleOnChange} value={text} id="myBox" rows="5"></textarea>
           </div>
           <button className="btn btn-primary me-2" onClick={handleUpClick}>Convert to Uppercase</button>
           <button className="btn btn-primary mx-1" onClick={handleLowClick}>Convert to Lowercase</button>
@@ -38,7 +38,7 @@ export default function TextArea(props) {
           <button className="btn btn-primary ms-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
           <button className="btn btn-primary ms-1" onClick={titleCaseWords}>Capitalize Words</button>
         </div>
-        <div className="container">
+        <div className={`container text-${props.mode === "light" ? 'dark' : 'light'} my-3`}>
           <h6>Your Text Summary</h6>
           <p>{text.trim().split(" ").length} words and {text.length} characters</p>
         </div>

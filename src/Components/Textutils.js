@@ -49,7 +49,7 @@ export default function TextArea(props) {
         </div>
         <div className={`container text-${props.mode === "light" ? 'dark' : 'light'} my-3`}>
           <h6>Your Text Summary</h6>
-          <p>{text.trim().split(" ").filter((s) => {return s.length!==0}).length} words and {text.length} characters</p>
+          <p>{text.trim().split(/\s+/).length} words and {text.length} characters</p>
         </div>
       </>
     );

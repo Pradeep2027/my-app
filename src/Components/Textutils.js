@@ -18,6 +18,10 @@ export default function TextArea(props) {
       navigator.clipboard.writeText(text);
       props.showAlert("Text copied to clipboard", "info");
     }
+    const clearText = () => {
+      setText('');
+      props.showAlert("Cleared Text", "info");
+    }
     const handleExtraSpaces = () => {
       let newText = text.split(/[ ]+/);
       setText(newText.join(" "));
@@ -36,15 +40,16 @@ export default function TextArea(props) {
           <div className="mb-3">
             <textarea className="form-control border-dark" style={{backgroundColor: props.mode==='light'?'white':'grey', color:props.mode==='light'?'black':'white'}} onChange={handleOnChange} value={text} id="myBox" rows="5"></textarea>
           </div>
-          <button className="btn btn-primary me-2" onClick={handleUpClick}>Convert to Uppercase</button>
-          <button className="btn btn-primary mx-1" onClick={handleLowClick}>Convert to Lowercase</button>
-          <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
-          <button className="btn btn-primary ms-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
-          <button className="btn btn-primary ms-1" onClick={titleCaseWords}>Capitalize Words</button>
+          <button className="btn btn-primary me-1 my-1" onClick={handleUpClick}>Convert to Uppercase</button>
+          <button className="btn btn-primary mx-1 my-1" onClick={handleLowClick}>Convert to Lowercase</button>
+          <button className="btn btn-primary mx-1 my-1" onClick={handleCopy}>Copy Text</button>
+          <button className="btn btn-primary mx-1 my-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+          <button className="btn btn-primary mx-1 my-1" onClick={titleCaseWords}>Capitalize Words</button>
+          <button className="btn btn-primary ms-1 my-1" onClick={clearText}>Clear Text</button>
         </div>
         <div className={`container text-${props.mode === "light" ? 'dark' : 'light'} my-3`}>
           <h6>Your Text Summary</h6>
-          <p>{text.trim().split(" ").length} words and {text.length} characters</p>
+          <p>{text.trim().split(" ").filter((s) => {return s.length!==0}).length} words and {text.length} characters</p>
         </div>
       </>
     );

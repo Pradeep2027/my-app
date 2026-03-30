@@ -13,6 +13,7 @@ import {
 function App() {
 
   const [mode, setMode] = useState('light');
+  const [prevClass, setPrevClass] = useState('bg-light');
 
   const [alert, setAlert] = useState(null);
 
@@ -30,32 +31,37 @@ function App() {
     color: 'black',
     backgroundColor: 'white'
   });
+
+  const removeBodyClasses = () => {
+    document.body.classList.remove('bg-'+prevClass);
+  }
   
-  const toggleMode = () => {
-    if (mode === 'light')  {
-      setMode('dark');
-      setStyle({
-        color: 'white',
-        backgroundColor: 'black'
-      });
-      showAlert("Dark Mode enabled","success");
-      document.body.style.backgroundColor = 'grey';
-    }
-    else  {
-      setMode('light');
+  const toggleMode = (cls) => {
+    console.log(cls);
+    removeBodyClasses();
+    document.body.classList.add('bg-'+cls);
+    setPrevClass(cls);
+    if (cls === 'light' || cls === 'success' || cls === 'warning' || cls === 'primary')  {
+      setMode(cls);
       setStyle({
         color: 'black',
         backgroundColor: 'white'
       });
-      showAlert("Dark Mode disabled","success");
-      document.body.style.backgroundColor = 'white';
     }
+    else  {
+      setMode(cls);
+      setStyle({
+        color: 'white',
+        backgroundColor: 'black'
+      });
+    }
+    showAlert('' + cls + ' Mode enabled',"success");
   }
 
   return (
     <>
     <BrowserRouter>
-      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
+      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} cls={prevClass}/>
       <Alert alert={alert}></Alert>
       <div className="container my-3">
         <Routes>
